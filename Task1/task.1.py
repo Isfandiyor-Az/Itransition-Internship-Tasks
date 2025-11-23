@@ -1,17 +1,9 @@
 import json
-import re
 import mysql.connector
 
 # 1. Load invalid JSON and fix it
 with open("valid.json", "r", encoding="utf-8") as f:
     raw = f.read()
-
-# Fix invalid format: wrap with [] if needed
-if not raw.strip().startswith("["):
-    raw = "[" + raw + "]"
-
-# Replace Ruby hash syntax => JSON
-raw = raw.replace("=>", ":")
 
 data = json.loads(raw)
 
@@ -31,7 +23,7 @@ for item in data:
     price = float(price_str[1:])
 
     cursor.execute("""
-        INSERT INTO mybooks_table (id, title, author, genre, publisher, year, price, currency)
+        INSERT INTO mybooks_table(id, title, author, genre, publisher, year, price, currency)
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
     """, (
         str(item["id"]), item["title"], item["author"], item["genre"],

@@ -21,7 +21,42 @@ raw = re.sub(r'([{,]\s*)([a-zA-Z_][a-zA-Z0-9_]*)\s*:', r'\1"\2":', raw)
 data = json.loads(raw)
 
 # Save as valid JSON
-with open("valid2.json", "w", encoding="utf-8") as out:
+with open("valid.json", "w", encoding="utf-8") as out:
     json.dump(data, out, indent=4, ensure_ascii=False)
 
 print("Valid JSON saved to valid.json")
+
+
+
+
+
+
+# Table 1
+# CREATE TABLE mybooks_table (
+#     id VARCHAR(30) PRIMARY KEY,  
+#     title VARCHAR(255),
+#     author VARCHAR(255),
+#     genre VARCHAR(100),
+#     publisher VARCHAR(255),
+#     year INT,
+#     price DECIMAL(10,2),
+#     currency CHAR(1)
+# );
+
+
+# Table 2
+# CREATE TABLE summary AS
+# SELECT
+#     year AS publication_year,
+#     COUNT(*) AS book_count,
+#     ROUND(
+#         AVG(
+#             CASE 
+#                 WHEN currency = '€' THEN price * 1.2
+#                 ELSE price
+#             END
+#         ), 2
+#     ) AS average_price
+# FROM mybooks_table
+# GROUP BY year
+# ORDER BY year;
