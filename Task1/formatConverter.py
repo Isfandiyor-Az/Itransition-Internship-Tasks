@@ -45,17 +45,25 @@ print("Valid JSON saved to valid.json")
 
 
 # Table 2
+<<<<<<< HEAD
 # CREATE TABLE summary AS
+=======
+# CREATE OR REPLACE VIEW summary AS
+>>>>>>> 70c32a6c6d1219b9cea93eabd9ff7a8557ac0c5f
 # SELECT
 #     year AS publication_year,
 #     COUNT(*) AS book_count,
 #     ROUND(
+<<<<<<< HEAD
 #         AVG(
 #             CASE 
 #                 WHEN currency = '€' THEN price * 1.2
 #                 ELSE price
 #             END
 #         ), 2
+=======
+#         AVG(CASE WHEN currency = '€' THEN price * 1.2 ELSE price END), 2
+>>>>>>> 70c32a6c6d1219b9cea93eabd9ff7a8557ac0c5f
 #     ) AS average_price
 # FROM mybooks_table
 # GROUP BY year
